@@ -4,6 +4,10 @@
 
 body {
     margin: auto;
+    &.active {
+        background-color: #363636;
+        color: #000;
+    }
 }
 
 .keyboard_keys {
@@ -12,6 +16,9 @@ body {
     margin: auto;
     background-color: #e7e7e7;
     font-size: 20px;
+    &.active {
+        background-color: #585858;
+    }
 }
 
 .row {
@@ -31,6 +38,15 @@ body {
     &:hover {
         background-color: #333;
         color: #fff;
+    }
+    &.keys_night {
+        background-color: #3c3c3c;
+        color: #fff;
+        &.active,
+        &:hover {
+            background-color: #fff;
+            color: #333;
+        }
     }
 }
 
@@ -69,9 +85,43 @@ body {
     margin-bottom: 25px;
     margin-top: 50px;
     resize: none;
+    &.active {
+        background-color: #2b2b2b;
+        color: #fff;
+    }
 }
 
 .active {
     background-color: #333;
     color: #fff;
+}
+
+.night-mode {
+    width: 80px;
+    height: 30px;
+    background-color: #e6e6e6;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &.active {
+        background-color: #222;
+    }
+}
+
+.toggle-cicle {
+    height: 20px;
+    width: 20px;
+    background-color: #363636;
+    border-radius: 50px;
+    margin: 0 5px;
+    position: absolute;
+    left: 0;
+    &.active {
+        left: 60%;
+        background-color: #fff;
+    }
 }

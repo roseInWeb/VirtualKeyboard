@@ -1,5 +1,6 @@
 import './style.scss';
 
+const body = document.querySelector('body');
 const keys = document.querySelectorAll('.keys');
 const space = document.querySelector('.space');
 const shift = document.querySelector('.shift');
@@ -8,6 +9,10 @@ const leftAlt = document.querySelectorAll('.alt-left');
 const rightAlt = document.querySelector('.alt-right');
 const leftCtrl = document.querySelector('.ctrl-left');
 const rightCtrl = document.querySelector('.ctrl-right');
+const nightMode = document.querySelector('.night-mode');
+const toggleCicle = document.querySelector('.toggle-cicle');
+const keyboardKeys = document.querySelector('.keyboard_keys');
+const textInput = document.querySelector('.text');
 
 for (let i = 0; i < keys.length; i++) {
     keys[i].setAttribute('keyname', keys[i].innerText);
@@ -81,4 +86,15 @@ window.addEventListener('keyup', function (e){
             break;
         }
     } 
+});
+
+nightMode.addEventListener('click', function () {
+    toggleCicle.classList.toggle('active');
+    body.classList.toggle('active');
+    keyboardKeys.classList.toggle('active');
+    keys.forEach((el) => {
+        el.classList.toggle('keys_night');
+    })
+    nightMode.classList.toggle('active');
+    textInput.classList.toggle('active');
 });
