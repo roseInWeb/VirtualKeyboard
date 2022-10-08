@@ -13,13 +13,14 @@ const nightMode = document.querySelector('.night-mode');
 const toggleCicle = document.querySelector('.toggle-cicle');
 const keyboardKeys = document.querySelector('.keyboard_keys');
 const textInput = document.querySelector('.text');
+const colorsInput = document.querySelector('.colors-input');
 
 for (let i = 0; i < keys.length; i++) {
     keys[i].setAttribute('keyname', keys[i].innerText);
     keys[i].setAttribute('lowerCaseName', keys[i].innerText.toLowerCase());
 }
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener('keydown', (e) => {
     for (let i = 0; i < keys.length; i++) {
         if (e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCaseName')) {
             keys[i].classList.add('active');
@@ -55,7 +56,7 @@ window.addEventListener('keydown', function (e) {
         }
     }
 });
-window.addEventListener('keyup', function (e){
+window.addEventListener('keyup', (e) => {
     for (let i = 0; i < keys.length; i++) {
         if (e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCaseName')) {
             keys[i].classList.remove('active');
@@ -88,7 +89,7 @@ window.addEventListener('keyup', function (e){
     } 
 });
 
-nightMode.addEventListener('click', function () {
+nightMode.addEventListener('click', () => {
     toggleCicle.classList.toggle('active');
     body.classList.toggle('active');
     keyboardKeys.classList.toggle('active');
@@ -97,4 +98,12 @@ nightMode.addEventListener('click', function () {
     })
     nightMode.classList.toggle('active');
     textInput.classList.toggle('active');
+    textInput.focus();
 });
+
+colorsInput.addEventListener('input', () => {
+    keyboardKeys.style.backgroundColor = colorsInput.value;
+    textInput.focus();
+});
+
+window.addEventListener('click', () => textInput.focus());
