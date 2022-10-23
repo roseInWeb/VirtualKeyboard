@@ -102,20 +102,16 @@ nightMode.addEventListener('click', () => {
     })
     nightMode.classList.toggle('active');
     textInput.classList.toggle('active');
-    textInput.focus();
 });
 
 colorsInput.addEventListener('input', () => {
     keyboardKeys.style.backgroundColor = colorsInput.value;
-    textInput.focus();
 });
 
-window.addEventListener('click', () => textInput.focus());
+window.addEventListener('click', () => textInput.blur());
 
 
 const func = () => {
-    textInput.focus();
-    textInput.selectionStart = textInput.value.length;
 }
 
 myKey.forEach((el) => {el.addEventListener('click', () => {
