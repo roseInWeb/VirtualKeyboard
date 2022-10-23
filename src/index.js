@@ -1,10 +1,14 @@
 import './style.scss';
 
+const tab = document.querySelector('.tab');
 const body = document.querySelector('body');
 const keys = document.querySelectorAll('.keys');
 const space = document.querySelector('.space');
 const shift = document.querySelector('.shift');
+const enter = document.querySelector('.enter');
+const myKey = document.querySelectorAll('.my-key');
 const capsLock = document.querySelector('.caps-lock');
+const backspace = document.querySelector('.backspace');
 const leftAlt = document.querySelectorAll('.alt-left');
 const rightAlt = document.querySelector('.alt-right');
 const leftCtrl = document.querySelector('.ctrl-left');
@@ -15,10 +19,10 @@ const keyboardKeys = document.querySelector('.keyboard_keys');
 const textInput = document.querySelector('.text');
 const colorsInput = document.querySelector('.colors-input');
 
-for (let i = 0; i < keys.length; i++) {
-    keys[i].setAttribute('keyname', keys[i].innerText);
-    keys[i].setAttribute('lowerCaseName', keys[i].innerText.toLowerCase());
-}
+keys.forEach((el) => {
+    el.setAttribute('keyname', el.innerText);
+    el.setAttribute('upperCaseName', el.innerText.toUpperCase());
+})
 
 window.addEventListener('keydown', (e) => {
     for (let i = 0; i < keys.length; i++) {
@@ -86,7 +90,7 @@ window.addEventListener('keyup', (e) => {
             rightCtrl.classList.remove('active');
             break;
         }
-    } 
+    }
 });
 
 nightMode.addEventListener('click', () => {
@@ -107,3 +111,48 @@ colorsInput.addEventListener('input', () => {
 });
 
 window.addEventListener('click', () => textInput.focus());
+
+
+const func = () => {
+    textInput.focus();
+    textInput.selectionStart = textInput.value.length;
+}
+
+myKey.forEach((el) => {el.addEventListener('click', () => {
+    textInput.innerHTML += el.textContent;
+    func();
+})});
+
+backspace.addEventListener('click', () => {
+    let text = textInput.textContent.split('');
+    let num = text.length;
+    let a = text.slice(0, num - 1);
+    textInput.innerHTML = a.join('');
+    func();
+});
+
+tab.addEventListener('click', () => {
+    textInput.innerHTML += '    ';
+    func();
+});
+
+enter.addEventListener('click', () => {
+    textInput.innerHTML += `
+`;
+    func();
+});
+
+let num = 0;
+capsLock.addEventListener('click', () => {
+    capsLock.classList.toggle('active');
+    if (num % 2 === 0) {
+        myKey.forEach((el) => {
+            el.innerHTML = el.textContent.toUpperCase();
+        });
+    } else {
+        myKey.forEach((el) => {
+            el.innerHTML = el.textContent.toLowerCase();
+        });
+    }
+    num++;
+})
